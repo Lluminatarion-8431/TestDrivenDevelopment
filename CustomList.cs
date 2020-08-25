@@ -46,7 +46,13 @@ namespace CustomListClass
 
             if (_count == _capacity)
             {
-                //Something
+                Capacity = _capacity * 2;
+                T[] tempArray = new T[_capacity];
+                for (int i = 0; i < _count; i++)
+                {
+                    tempArray[i] = _items[i];
+                }
+                _items = tempArray;
             }
             _items[_count] = item;
             _count++;
