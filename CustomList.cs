@@ -123,7 +123,7 @@ namespace CustomListClass
             CustomList<T> list = new CustomList<T>();
             list = list1 + list2;
 
-            for (int i = 0; i < list1.count; i++)
+            for (int i = 0; i < list1._count; i++)
             {
                 list.Remove(list2[i]);
             }
