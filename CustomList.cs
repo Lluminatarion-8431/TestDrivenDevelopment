@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CustomListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable where T : IComparable
     {
         //Member Variables
-        T[] _items;
+        private T[] _items;
 
-        int _capacity;
-        int _count;
+        private int _capacity;
+        private int _count;
 
         //Constructor
         public CustomList()
@@ -42,8 +43,31 @@ namespace CustomListClass
                 _capacity = value;
             }
         }
-
-
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                yield return _items[i];
+            }
+        }
+        public T this[int index]
+        {
+            get
+            {
+                if (index < _count && index >= 0)
+                {
+                    return _items[index];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+            set
+            {
+                _items[index] = value;
+            }
+        }
         public void Add(T item)
         {
 
@@ -77,6 +101,21 @@ namespace CustomListClass
                     tempArray[i] = _items[i];
                 }
             }
+        }
+
+        public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> list = new CustomList<T>();
+
+            for (int i = 0; i < list1._count; i++)
+            {
+                list.Add(list1[i]);
+            }
+            for (int i = 0; i < list2._count; i++)
+            {
+                list.Add(list2[i]);
+            }
+            return list;
         }
     }
 }
