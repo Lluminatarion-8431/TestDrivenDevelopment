@@ -117,5 +117,17 @@ namespace CustomListClass
             }
             return list;
         }
+
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> list = new CustomList<T>();
+            list = list1 + list2;
+
+            for (int i = 0; i < list1.count; i++)
+            {
+                list.Remove(list2[i]);
+            }
+            return list;
+        }
     }
 }
