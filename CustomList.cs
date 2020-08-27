@@ -143,6 +143,27 @@ namespace CustomListClass
             }
             return value;
         }
+        //Zipping two list classes///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public static CustomList<T> Zip(CustomList<T> odd, CustomList<T> even)
+        {
+            int i = 0;
+            CustomList<T> zipList = new CustomList<T>();
 
+            do
+            {
+                if (i + 1 <= odd._count)
+                {
+                    zipList.Add(odd[i]);
+                }
+                if (i + 1 <= even._count)
+                {
+                    zipList.Add(even[i]);
+                }
+                i++;
+            }
+            while ((i + 1 <= odd._count) || (i + 1 <= even._count));
+
+            return zipList;
+        }
     }
 }

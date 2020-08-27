@@ -277,17 +277,18 @@ namespace TestCustomList
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> minusOperator = new CustomList<int>();
+            string expected = "35";
+            string actual;
+
+            //act
             testList1.Add(1);
             testList1.Add(3);
             testList1.Add(5);
             testList2.Add(2);
             testList2.Add(1);
             testList2.Add(6);
-            string expected = "35";
-
-            //act
             minusOperator = testList1 - testList2;
-            string actual = minusOperator.ToString();
+            actual = minusOperator.ToString();
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -299,17 +300,18 @@ namespace TestCustomList
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> minusOperator = new CustomList<int>();
+            string expected = "15";
+            string actual;
+
+            //act
             testList1.Add(1);
             testList1.Add(1);//subtracting 1 1 
             testList1.Add(5);
             testList2.Add(2);
             testList2.Add(1);
             testList2.Add(6);
-            string expected = "15";
-
-            //act
             minusOperator = testList1 - testList2;
-            string actual = minusOperator.ToString();
+            actual = minusOperator.ToString();
 
             //assert
             Assert.AreEqual(expected, actual);
@@ -374,6 +376,7 @@ namespace TestCustomList
             string value4 = "rld";
             string expected = "Hello World";
             string actual;
+
             //act
             testList.Add(value1);
             testList.Add(value2);
@@ -385,6 +388,47 @@ namespace TestCustomList
             Assert.AreEqual(expected, actual);
 
         }
+        //Adding Two Instances To A Zipper///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [TestMethod]
+        public void Zip_ZippingTwoInstancesTogether_OddAndEvenZipper()
+        {
+            //arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> zipList;
+            string expected = "123456";
 
+            // act
+            odd.Add(1);
+            odd.Add(3);
+            odd.Add(5);
+            even.Add(2);
+            even.Add(4);
+            even.Add(6);
+            zipList = CustomList<int>.Zip(odd, even);
+
+            // assert
+            Assert.AreEqual(expected, zipList.ToString());
+        }
+        [TestMethod]
+        public void Zip_ZippingTwoUnevenInstancesTogether_OddAndEvenZipper()
+        {
+            //arrange
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+            CustomList<int> zipList;
+            string expected = "12345";
+
+            // act
+            odd.Add(1);
+            odd.Add(3);
+            odd.Add(5);
+            even.Add(2);
+            even.Add(4);
+            zipList = CustomList<int>.Zip(odd, even);
+
+            // assert
+            Assert.AreEqual(expected, zipList.ToString());
+        }
     }
 }
