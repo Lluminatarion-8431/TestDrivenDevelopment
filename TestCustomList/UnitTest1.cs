@@ -267,5 +267,71 @@ namespace TestCustomList
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Subract_SubtractingTwoInstancesOfTheCustomListClass_OverLoadingMinusOperator()
+        {
+            //arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> minusOperator = new CustomList<int>();
+            testList1.Add(1);
+            testList1.Add(3);
+            testList1.Add(5);
+            testList2.Add(2);
+            testList2.Add(1);
+            testList2.Add(6);
+            string expected = "35";
+
+            // act
+            minusOperator = testList1 - testList2;
+            string actual = minusOperator.ToString();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subract_SubtractingTwoInstancesOfTheCustomListClassHavingDuplicateValueInSameList_OverLoadingMinusOperator()
+        {
+            // arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> minusOperator = new CustomList<int>();
+            testList1.Add(1);
+            testList1.Add(1);//subtracting 1 1 
+            testList1.Add(5);
+            testList2.Add(2);
+            testList2.Add(1);
+            testList2.Add(6);
+            string expected = "15";
+
+            // act
+            minusOperator = testList1 - testList2;
+            string actual = minusOperator.ToString();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Subract_SubtractingOneInstancesFromAnEmptyCustomListClass_OverLoadingMinusOperator()
+        {
+            // arrange
+            CustomList<int> testList1 = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> minusOperator = new CustomList<int>();
+            testList1.Add(1);
+            testList1.Add(3);
+            testList1.Add(5);
+            //subtracting an empty list
+            string expected = "135";
+
+            // act
+            minusOperator = testList1 - testList2;
+            string actual = minusOperator.ToString();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
