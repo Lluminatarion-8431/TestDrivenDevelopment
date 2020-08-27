@@ -7,6 +7,7 @@ namespace TestCustomList
     [TestClass]
     public class UnitTest1
     {
+        //Add() Test Methods/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         [TestMethod]
         public void Add_AddTwoValues_CountOf2()
         {
@@ -105,12 +106,12 @@ namespace TestCustomList
         [TestMethod]
         public void Add_AddingValueToCustomList_ValuesStayAtSameIndex()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int expected = 2;
             int actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
@@ -118,58 +119,58 @@ namespace TestCustomList
             testList.Add(5);
             actual = testList[1];
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
-        //Remove Method//
+        //Remove() Test Methods//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         [TestMethod]
         public void Remove_RemovingOneValue_RemovingAddedValueAtIndexOne()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 2;
             int expected = 3;
             int actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
             testList.Remove(itemToRemove);
             actual = testList[1];
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Remove_RemovingFirstValue_CountOfCustomListDecrements()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 1;
             int expected = 2;
             int actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
             testList.Remove(itemToRemove);
             actual = testList.Count;
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Remove_RemovingFirstValue_CheckForNextListItem()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 1;
             int expected = 2;
             int actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
@@ -177,19 +178,19 @@ namespace TestCustomList
             testList.Remove(itemToRemove);
             actual = testList[0];
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Remove_RemovingLastValue_CountOfCustomListDecrements()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 5;
             int expected = 4;
             int actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
@@ -198,19 +199,19 @@ namespace TestCustomList
             testList.Remove(itemToRemove);
             actual = testList.Count;
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Remove_RemovingLastValue_RemovingNonExistingValue()
         {
-            // arrange
+            //arrange
             CustomList<int> testList = new CustomList<int>();
             int itemToRemove = 6;
             bool expected = false;
             bool actual;
 
-            // act
+            //act
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
@@ -219,20 +220,21 @@ namespace TestCustomList
             testList.Remove(itemToRemove);
             actual = false;
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
+        //Overloading +Operator//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         [TestMethod]
         public void Add_AddingTwoInstancesOfTheCustomListClass_OverLoadingPlusOperator()
         {
-            // arrange
+            //arrange
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> addOperator = new CustomList<int>();
             string expected = "135246";
             string actual;
 
-            // act
+            //act
             testList1.Add(1);
             testList1.Add(3);
             testList1.Add(5);
@@ -242,20 +244,20 @@ namespace TestCustomList
             addOperator = testList1 + testList2;
             actual = addOperator.ToString();
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Add_AddingTwoInstancesWithUnevenCustomListClass_OverLoadingPlusOperator()
         {
-            // arrange
+            //arrange
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> addOperator = new CustomList<int>();
             string expected = "13524";
             string actual;
 
-            // act
+            //act
             testList1.Add(1);
             testList1.Add(3);
             testList1.Add(5);
@@ -264,10 +266,10 @@ namespace TestCustomList
             addOperator = testList1 + testList2;
             actual = addOperator.ToString();
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
-
+        //Overloading -Operator//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         [TestMethod]
         public void Subract_SubtractingTwoInstancesOfTheCustomListClass_OverLoadingMinusOperator()
         {
@@ -283,17 +285,17 @@ namespace TestCustomList
             testList2.Add(6);
             string expected = "35";
 
-            // act
+            //act
             minusOperator = testList1 - testList2;
             string actual = minusOperator.ToString();
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Subract_SubtractingTwoInstancesOfTheCustomListClassHavingDuplicateValueInSameList_OverLoadingMinusOperator()
         {
-            // arrange
+            //arrange
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> minusOperator = new CustomList<int>();
@@ -305,32 +307,83 @@ namespace TestCustomList
             testList2.Add(6);
             string expected = "15";
 
-            // act
+            //act
             minusOperator = testList1 - testList2;
             string actual = minusOperator.ToString();
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Subract_SubtractingOneInstancesFromAnEmptyCustomListClass_OverLoadingMinusOperator()
         {
-            // arrange
+            //arrange
             CustomList<int> testList1 = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
             CustomList<int> minusOperator = new CustomList<int>();
+            string expected = "135";
+            string actual;
+
+            //act
             testList1.Add(1);
             testList1.Add(3);
             testList1.Add(5);
             //subtracting an empty list
-            string expected = "135";
-
-            // act
             minusOperator = testList1 - testList2;
-            string actual = minusOperator.ToString();
+            actual = minusOperator.ToString();
 
-            // assert
+            //assert
             Assert.AreEqual(expected, actual);
+        }
+        //Overriding ToString////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [TestMethod]
+        public void Override_OverridingToStringMethod_ConvertingCustomListToString()
+        {
+            //arrange
+            CustomList<int> testList = new CustomList<int>();
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 4;
+            int value6 = 6;
+            string expected = "135246";
+            string actual;
+
+            //act
+            testList.Add(value1);
+            testList.Add(value2);
+            testList.Add(value3);
+            testList.Add(value4);
+            testList.Add(value5);
+            testList.Add(value6);
+            actual = testList.ToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        public void Override_OverridingToStringMethod_AddingSeveralStringsCustomListToString()
+        {
+            //arrange
+            CustomList<string> testList = new CustomList<string>();
+            string value1 = "He";
+            string value2 = "llo";
+            string value3 = "Wo";
+            string value4 = "rld";
+            string expected = "Hello World";
+            string actual;
+            //act
+            testList.Add(value1);
+            testList.Add(value2);
+            testList.Add(value3);
+            testList.Add(value4);
+            actual = testList.ToString();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
         }
 
     }
