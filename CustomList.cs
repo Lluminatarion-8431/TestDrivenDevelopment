@@ -165,5 +165,30 @@ namespace CustomListClass
 
             return zipList;
         }
+        //Sorting Algorithm: Bubble Sort/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public CustomList<T> Sort()
+        {
+            int i;
+            int j;
+
+            for (j = _count - 1; j > 0; j--)
+            {
+                for (i = 0; i < j; i++)
+                {
+                    if (_items[i].CompareTo(_items[i + 1]) > 0)
+                    {
+                        exchange(this, i, i + 1);
+                    }
+                }
+            }
+            return this;
+        }
+        public void exchange(CustomList<T> l1, int m, int n)
+        {
+            T temporary;
+            temporary = l1[m];
+            l1[m] = l1[n];
+            l1[n] = temporary;
+        }
     }
 }
